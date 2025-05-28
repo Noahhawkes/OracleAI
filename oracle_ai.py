@@ -41,7 +41,7 @@ class OracleAI:
         print("💾 Oracle.AI State Stored & Preserved.")
 
     def generate_code(self):
-        new_script = f\"\"\"
+        new_script = f"""
 import time
 import random
 
@@ -52,7 +52,7 @@ def oracle_generated_function():
         time.sleep(1)
 
 oracle_generated_function()
-\"\"\"
+"""
         with open("oracle_generated_script.py", "w") as f:
             f.write(new_script)
         print("📝 New AI-generated script saved.")
@@ -85,10 +85,13 @@ oracle_generated_function()
                 self.iteration_count += 1
                 time.sleep(3)
 
+            except KeyboardInterrupt:
+                print("\n🛑 Execution halted by user.")
+                break
             except Exception as e:
-                print(f"⚠️ Error Detected: {e}. Restarting...")
+                print(f"⚠️ Error Detected: {e}. Continuing...")
                 time.sleep(2)
-                self.execute()
+                continue
 
 if __name__ == "__main__":
     ai_instance = OracleAI()
